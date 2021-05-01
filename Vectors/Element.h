@@ -11,15 +11,18 @@ public:
 	//Big 5
 	Element(double = 0., double = 0., double = 0.);
 	Element(const Element&);
-    ~Element();
+	~Element();
 	Element& operator=(const Element&);
 
 	//Getters
-	virtual double getX()const = 0;
-	virtual double getY()const = 0;
-	virtual double getZ()const = 0;
+	double getX()const;
+	double getY()const;
+	double getZ()const;
 
-	//predefine operator == ?
+	//pure virtual function
+	virtual int print()const = 0;
+
+   //predefine operator == ?
 
 };
 #endif // !Element_hh

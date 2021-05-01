@@ -1,5 +1,13 @@
 #include "Element.h"
-
+double Element::getX()const {
+	return this->x;
+}
+double Element::getY()const {
+	return this->y;
+}
+double Element::getZ()const {
+	return this->z;
+}
 
 Element::Element(double x, double y, double z) :x(0.), y(0.), z(0.) {
 
