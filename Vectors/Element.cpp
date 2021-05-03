@@ -1,13 +1,5 @@
 #include "Element.h"
-double Element::getX()const {
-	return this->x;
-}
-double Element::getY()const {
-	return this->y;
-}
-double Element::getZ()const {
-	return this->z;
-}
+
 
 Element::Element(double x, double y, double z) :x(0.), y(0.), z(0.) {
 
@@ -27,4 +19,15 @@ Element& Element::operator=(const Element& rhs) {
 	}
 
 	return *this;
+}
+std::ostream& Element::ins(std::ostream& out) const{
+	out << "X = " << this->x << std::endl;
+	out << "Y = " << this->y << std::endl;
+	out << "Z = " << this->z << std::endl;
+
+	return out;
+
+}
+std::ostream& operator<<(std::ostream& lhs, const Element& rhs) {
+	return rhs.ins(lhs);
 }
