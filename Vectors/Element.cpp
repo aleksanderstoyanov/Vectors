@@ -3,12 +3,15 @@
 //Getters
 int Element::setX(double x) {
 	this->x = x;
+	return 0;
 }
 int Element::setY(double y) {
 	this->y = y;
+	return 0;
 }
 int Element::setZ(double z) {
 	this->z = z;
+	return 0;
 }
 
 //Setters
