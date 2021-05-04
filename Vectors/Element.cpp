@@ -1,6 +1,28 @@
 #include "Element.h"
 
+//Getters
+int Element::setX(double x) {
+	this->x = x;
+}
+int Element::setY(double y) {
+	this->y = y;
+}
+int Element::setZ(double z) {
+	this->z = z;
+}
 
+//Setters
+double Element::getX()const {
+	return this->x;
+}
+double Element::getY()const {
+	return this->y;
+}
+double Element::getZ()const {
+	return this->z;
+}
+
+//Big five
 Element::Element(double x, double y, double z) :x(0.), y(0.), z(0.) {
 
 }

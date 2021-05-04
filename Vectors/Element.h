@@ -17,7 +17,15 @@ public:
 	// pure virtual
 	virtual int print()const = 0;
 
+	//getters
+	double getX()const;
+	double getY()const;
+	double getZ()const;
 
+	//setters
+	int setX(double);
+	int setY(double);
+	int setZ(double);
 
 	//predefine operator == ?
 
