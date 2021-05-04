@@ -14,16 +14,14 @@ public:
 	~Element();
 	Element& operator=(const Element&);
 
-	//Getters pure virtual
-	virtual double getX()const=0;
-	virtual double getY()const=0;
-	virtual double getZ()const=0;
+	// pure virtual
+	virtual int print()const = 0;
 
-	
 
-   //predefine operator == ?
-	virtual std::ostream& ins(std::ostream&)const;
+
+	//predefine operator == ?
+
 };
-std::ostream& operator <<(std::ostream&, const Element&);
+
 #endif // !Element_hh
 
