@@ -15,7 +15,7 @@ public:
 	Element& operator=(const Element&);
 
 	// pure virtual
-	virtual int print()const = 0;
+	virtual int quadrant() const=0;
 
 	//getters
 	double getX()const;
