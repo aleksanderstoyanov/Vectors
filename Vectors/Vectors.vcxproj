@@ -143,14 +143,12 @@
     <ClInclude Include="EqualPointException.h" />
     <ClInclude Include="FileException.h" />
     <ClInclude Include="Point.h" />
-    <ClInclude Include="Vector.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Element.cpp" />
     <ClCompile Include="EqualPointException.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Point.cpp" />
-    <ClCompile Include="Vector.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
