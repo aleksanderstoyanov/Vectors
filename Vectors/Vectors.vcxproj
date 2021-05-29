@@ -142,11 +142,15 @@
     <ClInclude Include="Element.h" />
     <ClInclude Include="EqualPointException.h" />
     <ClInclude Include="FileException.h" />
+    <ClInclude Include="Line.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="MenuFile.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Segment.h" />
+    <ClInclude Include="TestLine.h" />
     <ClInclude Include="TestSegment.h" />
     <ClInclude Include="TestTetrahedron.h" />
+    <ClInclude Include="TestTriangle.h" />
     <ClInclude Include="Tetrahedron.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="Vector.h" />
@@ -154,8 +158,10 @@
   <ItemGroup>
     <ClCompile Include="Element.cpp" />
     <ClCompile Include="EqualPointException.cpp" />
+    <ClCompile Include="Line.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="MenuFile.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="Segment.cpp" />
     <ClCompile Include="Tetrahedron.cpp" />
