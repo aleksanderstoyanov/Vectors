@@ -74,6 +74,9 @@
     <ClCompile Include="EqualPointException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="VectorLengthException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Point.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
