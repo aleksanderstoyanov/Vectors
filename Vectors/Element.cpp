@@ -33,7 +33,7 @@ Element::Element(const Element& rhs) : x(rhs.x), y(rhs.y), z(rhs.z) {
 
 }
 Element::~Element() {
-	std::cout << "Element destructor" << std::endl;
+	//std::cout << "Element destructor" << std::endl;
 }
 Element& Element::operator=(const Element& rhs) {
 	if (this != &rhs)
