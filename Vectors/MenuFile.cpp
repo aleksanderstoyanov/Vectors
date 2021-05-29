@@ -217,7 +217,7 @@ Segment* parseSegment(const char* buffer) {
 	int numberOfArguments = 0;
 	for (int i = 0; i < strlen(buffer); i++)
 	{
-		if (buffer[i] != ' ' || buffer[i] != ',')
+		if (buffer[i] != ' ' && buffer[i] != ',')
 		{
 			parameters[numberOfArguments++] = buffer[i] - '0';
 		}
