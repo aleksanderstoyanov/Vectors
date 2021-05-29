@@ -18,12 +18,21 @@
     <ClInclude Include="Element.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="EqualPointException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Element.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EqualPointException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
