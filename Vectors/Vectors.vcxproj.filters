@@ -21,6 +21,9 @@
     <ClInclude Include="EqualPointException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="VectorLengthException.h">
+      <Filter>Header Files</Filter>
+      </ClInclude>
     <ClInclude Include="FileException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
