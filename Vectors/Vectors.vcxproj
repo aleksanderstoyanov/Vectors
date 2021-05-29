@@ -145,6 +145,8 @@
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Segment.h" />
+    <ClInclude Include="TestSegment.h" />
+    <ClInclude Include="TestTetrahedron.h" />
     <ClInclude Include="Tetrahedron.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="Vector.h" />
