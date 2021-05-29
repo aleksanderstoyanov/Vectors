@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClInclude Include="Element.h" />
     <ClInclude Include="EqualPointException.h" />
+    <ClInclude Include="VectorLengthException.h" />
     <ClInclude Include="FileException.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="Menu.h" />
@@ -158,6 +159,7 @@
   <ItemGroup>
     <ClCompile Include="Element.cpp" />
     <ClCompile Include="EqualPointException.cpp" />
+    <ClCompile Include="VectorLengthException.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
