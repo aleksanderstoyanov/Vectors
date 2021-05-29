@@ -82,3 +82,10 @@ bool operator==(const Point& lhs, const Segment& rhs)    // first make Vector(S,
     if ((first.length() + second.length()) == rhs.length()) return true;
     return false;
 }
+
+std::istream& Segment::ext(std::istream& in)
+{
+    S.ext(in);
+    E.ext(in);
+    return in;
+}

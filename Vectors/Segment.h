@@ -45,6 +45,8 @@ public:
     Point getS() const { return S; };
     Point getE() const { return E; };
 
+    std::istream& ext(std::istream&);
+
 
 
 private:
