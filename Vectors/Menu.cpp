@@ -4,6 +4,7 @@
 #include"Segment.h"
 #include"Triangle.h"
 #include"Vector.h"
+#include "Tetrahedron.h"
 #include"Menu.h"
 using namespace std;
 
@@ -16,6 +17,7 @@ int printMenu() {
 	cout << endl << "3 - Line" << endl;
 	cout << endl << "4 - Segment" << endl;
 	cout << endl << "5 - Triangle" << endl;
+	cout << endl << "6 - Tetrahedron" << endl;
 
 	int option;
 
@@ -23,7 +25,7 @@ int printMenu() {
 	while (true) {
 		cout << "Please enter geometrical object: " << endl;
 		cin >> option;
-		if (option < 0 || option > 5) {
+		if (option < 0 || option > 6) {
 			cout << "Wrong! Please choose again: " << endl;
 			cin >> option;
 		}
@@ -48,6 +50,9 @@ int printMenu() {
 				break;
 			case 5:
 				printAllTriangleOperations();
+				break;
+			case 6:
+				printAllTetrahedronOperations();
 				break;
 			}
 
@@ -272,7 +277,7 @@ int printAllLineOperations() {
 
 			case 2:
 			{
-				Vector normalVector = l.lineDirection();
+				Vector normalVector = l.findNormalVector();
 				cout << "Normal vector is: " << endl << normalVector;
 				break;
 			}
@@ -412,9 +417,10 @@ int printAllSegmentOperations() {
 				break;
 			}
 		}
-		return 0;
+		
 
 	}
+	return 0;
 }
 
 
@@ -510,5 +516,66 @@ int printAllTriangleOperations() {
 		}
 	}
 
+	return 0;
+}
+int printAllTetrahedronOperations() {
+	Tetrahedron t = Tetrahedron();
+	cin >> t;
+	int chooseOperation;
+	cout << "Please enter operation for the object: " << endl;
+	cout << "0 - Exit" << endl;
+	cout << "1 - Find if tetrahedron is regular" << endl;
+	cout << "2 - Find if tetrahedron is orthocentric" << endl;
+	cout << "3 - Find surface area" << endl;
+	cout << "4 - Find volume" << endl;
+	cout << "5 - Draw tetrahedron" << endl;
+	while (true)
+	{
+		cin >> chooseOperation;
+		if (chooseOperation < 0 || chooseOperation > 5)
+		{
+			cout << "Wrong! Please enter again: " << endl;
+			cin >> chooseOperation;
+		}
+		else if (chooseOperation == 0) {
+			break;
+		}
+		else
+		{
+			switch (chooseOperation)
+			{
+			case 1:
+				if (t.isRegular())
+				{
+					cout << "Tetrahedron is regular" << endl;
+				}
+				else
+				{
+					cout << "Tetrahedron is not regular" << endl;
+				}
+				break;
+			case 2:
+				if (t.isOrthocentric())
+				{
+					cout << "Tetrahedron is orthocentric" << endl;
+				}
+				else
+				{
+					cout << "Tetrahedron is not orthocentric" << endl;
+				}
+				break;
+			case 3:
+				cout << "Surface area of tetrahedron is: " << t.surfaceArea() << endl;
+				break;
+			case 4:
+				cout << "Volume of tetrahedron is:  " << t.volume() << endl;
+				break;
+			case 5:
+				cout << t;
+				break;
+
+			}
+		}
+	}
 	return 0;
 }

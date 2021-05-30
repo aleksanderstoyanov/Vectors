@@ -7,5 +7,5 @@ int printAllVectorOperations();
 int printAllLineOperations();
 int printAllSegmentOperations();
 int printAllTriangleOperations();
-
+int printAllTetrahedronOperations();
 #endif 
