@@ -372,3 +372,6 @@ std::istream& Line::ext(std::istream& in) {
 std::istream& operator >> (std::istream& lhs, Line& rhs) {
 	return rhs.ext(lhs);
 };
+Point Line::getPoint1()const {
+	return this->point;
+}

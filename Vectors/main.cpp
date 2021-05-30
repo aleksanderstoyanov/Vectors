@@ -5,10 +5,12 @@
 #include "TestLine.h"
 #include "TestTriangle.h"
 
+
 using namespace std;
 
 int main() {
 
+	
 	cout << "Choose between options 1 or 2" << endl;
 	cout << "1.Menu without file" << endl << "2.Menu with file" << endl;
 	int option;
@@ -40,6 +42,8 @@ int main() {
 	{
 		cout << e.what();
 	}
+
+	
 
 
 

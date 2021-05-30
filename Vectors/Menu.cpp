@@ -6,11 +6,12 @@
 #include"Vector.h"
 #include "Tetrahedron.h"
 #include"Menu.h"
+#include <fstream>
 using namespace std;
 
 
 int printMenu() {
-
+	vector<Element*>container;
 	cout << endl << "0 - Exit" << endl;
 	cout << endl << "1 - Point" << endl;
 	cout << endl << "2 - Vector" << endl;
@@ -30,6 +31,8 @@ int printMenu() {
 			cin >> option;
 		}
 		else if (option == 0) {
+			saveContainerInFile(container);
+			
 			cout << "Successfully exited the program! Have an amazing day :)";
 			break;
 		}
@@ -37,22 +40,22 @@ int printMenu() {
 			switch (option)
 			{
 			case 1:
-				printAllPointOperations();
+				printAllPointOperations(container);
 				break;
 			case 2:
-				printAllVectorOperations();
+				printAllVectorOperations(container);
 				break;
 			case 3:
-				printAllLineOperations();
+				printAllLineOperations(container);
 				break;
 			case 4:
-				printAllSegmentOperations();
+				printAllSegmentOperations(container);
 				break;
 			case 5:
-				printAllTriangleOperations();
+				printAllTriangleOperations(container);
 				break;
 			case 6:
-				printAllTetrahedronOperations();
+				printAllTetrahedronOperations(container);
 				break;
 			}
 
@@ -60,10 +63,11 @@ int printMenu() {
 
 
 	}
+	
 	return 0;
 }
 
-int printAllPointOperations() {
+int printAllPointOperations(std::vector<Element*>& container) {
 	int chooseOperation;
 	Point p;
 	cin >> p;
@@ -104,10 +108,11 @@ int printAllPointOperations() {
 
 		}
 	}
+	container.push_back(new Point(p.getX(), p.getY(), p.getZ()));
 	return 0;
 }
 
-int printAllVectorOperations() {
+int printAllVectorOperations(std::vector<Element*>& container) {
 	int chooseOperation;
 	Vector v;
 	cin >> v;
@@ -233,12 +238,13 @@ int printAllVectorOperations() {
 			}
 		}
 	}
+	container.push_back(new Vector(v.getX(), v.getY(), v.getZ()));
 	return 0;
 }
 
 
 
-int printAllLineOperations() {
+int printAllLineOperations(std::vector<Element*>& container) {
 	Line l;
 	cin >> l;
 	int chooseOperation;
@@ -381,11 +387,25 @@ int printAllLineOperations() {
 			}
 		}
 	}
+	Point* point = new Point(l.getPoint1().getX(), l.getPoint1().getY(), l.getPoint1().getZ());
+	Vector* vector = new Vector(l.getX(), l.getY(), l.getZ());
+
+	container.push_back(new Line(*point, *vector));
+	if (point != nullptr)
+	{
+		delete point;
+		point = nullptr;
+	}
+	if (vector != nullptr)
+	{
+		delete vector;
+		vector = nullptr;
+	}
 	return 0;
 }
 
 
-int printAllSegmentOperations() {
+int printAllSegmentOperations(std::vector<Element*>& container) {
 	int chooseOperation;
 	Segment s;
 	cin >> s;
@@ -417,15 +437,29 @@ int printAllSegmentOperations() {
 				break;
 			}
 		}
-		
 
+
+	}
+	Point* S = new Point(s.getS().getX(), s.getS().getY(), s.getS().getZ());
+	Point* E = new Point(s.getE().getX(), s.getE().getY(), s.getE().getZ());
+
+	container.push_back(new Segment(*S, *E));
+	if (S != nullptr)
+	{
+		delete S;
+		S = nullptr;
+	}
+	if (E != nullptr)
+	{
+		delete E;
+		E = nullptr;
 	}
 	return 0;
 }
 
 
 
-int printAllTriangleOperations() {
+int printAllTriangleOperations(std::vector<Element*>& container) {
 	Triangle t;
 	cin >> t;
 	int chooseOperation;
@@ -515,10 +549,29 @@ int printAllTriangleOperations() {
 
 		}
 	}
+	Point* A = new Point(t.getA().getX(), t.getA().getY(), t.getA().getZ());
+	Point* B = new Point(t.getB().getX(), t.getB().getY(), t.getB().getZ());
+	Point* C = new Point(t.getC().getX(), t.getC().getY(), t.getC().getZ());
 
-	return 0;
+	container.push_back(new Triangle(*A, *B, *C));
+	if (A!=nullptr)
+	{
+		delete A;
+		A = nullptr;
+	}
+	if (B!=nullptr)
+	{
+		delete B;
+		B = nullptr;
+	}
+	if (C!=nullptr)
+	{
+		delete C;
+		C = nullptr;
+	}
+		return 0;
 }
-int printAllTetrahedronOperations() {
+int printAllTetrahedronOperations(std::vector<Element*>& container) {
 	Tetrahedron t = Tetrahedron();
 	cin >> t;
 	int chooseOperation;
@@ -577,5 +630,96 @@ int printAllTetrahedronOperations() {
 			}
 		}
 	}
+	Point* A = new Point(t.getA().getX(), t.getA().getY(), t.getA().getZ());
+	Point* B = new Point(t.getB().getX(), t.getB().getY(), t.getB().getZ());
+	Point* C = new Point(t.getC().getX(), t.getC().getY(), t.getC().getZ());
+	Point* D = new Point(t.getD().getX(), t.getD().getY(), t.getD().getZ());
+	container.push_back(new Tetrahedron(*A, *B, *C,*D));
+	if (A != nullptr)
+	{
+		delete A;
+		A = nullptr;
+	}
+	if (B != nullptr)
+	{
+		delete B;
+		B = nullptr;
+	}
+	if (C != nullptr)
+	{
+		delete C;
+		C = nullptr;
+	}
+	if (D!=nullptr)
+	{
+		delete D;
+		D = nullptr;
+	}
 	return 0;
+}
+int saveContainerInFile(std::vector<Element*>& container) 
+{
+	cout << "Do you want to save the objects you have created ? y/n" << std::endl;
+	char answer;
+	cin >> answer;
+	while (true)
+	{
+		if (answer == 'y' || answer == 'n')
+		{
+			break;
+		}
+		std::cout << "Enter y or n !" << std::endl;
+		std::cin >> answer;
+	}
+	if (answer == 'y')
+	{
+		std::ofstream writer("Objects-Container.txt");
+		int index = 1;
+		for (std::vector<Element*>::iterator it = container.begin(); it < container.end(); it++)
+		{
+
+			writer << "Object: " << index << endl;
+			if (typeid(**it) == typeid(Vector))
+			{
+				writer << "Vector" << endl;
+				Vector* v = dynamic_cast<Vector*>(*it);
+				writer << *v;
+			}
+			else if (typeid(**it) == typeid(Point))
+			{
+				writer << "Point" << endl;
+				Point* v = dynamic_cast<Point*>(*it);
+				writer << *v;
+			}
+			else if (typeid(**it) == typeid(Line))
+			{
+				writer << "Line" << endl;
+				Line* l = dynamic_cast<Line*>(*it);
+				writer << *l;
+			}
+			else if (typeid(**it) == typeid(Segment))
+			{
+				writer << "Segment" << endl;
+				Segment* s = dynamic_cast<Segment*>(*it);
+				writer << *s;
+			}
+			else if (typeid(**it) == typeid(Triangle))
+			{
+				writer << "Triangle" << endl;
+				Triangle* t = dynamic_cast<Triangle*>(*it);
+				writer << *t;
+			}
+			else if (typeid(**it) == typeid(Tetrahedron)) {
+				writer << "Tetrahedron" << endl;
+				Tetrahedron* t = dynamic_cast<Tetrahedron*>(*it);
+				writer << *t;
+			}
+			index++;
+
+		}
+		writer.close();
+		return 0;
+	}
+	return 0;
+
 }

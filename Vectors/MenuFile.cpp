@@ -128,29 +128,7 @@ int printMenuFile() {
 
 	}
 	reader.close();
-	/*std::cout << "Do you want to save the objects you have created ? y/n" << std::endl;
-	char answer;
-	std::cin >> answer;*/
-	//while (true)
-	//{
-	//	if (answer=='y'||answer=='n')
-	//	{
-	//		break;
-	//	}
-	//	std::cout << "Enter y or n !" << std::endl;
-	//	std::cin >> answer;
-	//}
-	//if (answer=='y')
-	//{
-	//	std::ofstream writer("Result.txt");
-	//	
-	//	for (std::vector<Element*>::iterator it=container.begin();it<container.end();it++)
-	//	{
-	//		Vector* v = dynamic_cast<Vector*>(*it);
-	//		writer << v << std::endl;
-	//	}
-	//	writer.close();
-	//}
+	
 
 	std::cout << "Goodbye :)" << std::endl;
 	return 0;

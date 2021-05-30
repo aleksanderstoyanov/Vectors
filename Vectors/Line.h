@@ -45,6 +45,7 @@ public:
 	virtual std::ostream& ins(std::ostream&)const;
 	virtual std::istream& ext(std::istream&);
 
+	Point getPoint1()const;
 };
 
 #endif // !Line_hh
