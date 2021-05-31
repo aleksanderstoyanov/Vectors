@@ -5,6 +5,8 @@
 #include <cmath>
 #include <fstream>
 #include "Vector.h"
+#include "Helper.h"
+
 class Line : public Vector {
 
 

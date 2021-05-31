@@ -63,7 +63,7 @@ Vector Line::findNormalVector() const {
 
 	return n;
 }
-// Търпи модификация 
+
 bool Line::operator+(const Point& rhs) const {
 	double x = (rhs.getX() - point.getX()) / (point2.getX() - point.getX());
 	double y = (rhs.getY() - point.getY()) / (point2.getY() - point.getY());
@@ -89,8 +89,7 @@ bool Line::operator||(const Line& rhs)const {
 
 
 
-}
-//TO DO: Kак да разберем  k ? 
+} 
 Point Line::findCrossingPoint(Line& rhs)
 {
 	if ((*this && rhs) == false)
@@ -174,6 +173,7 @@ double Line::findAngleOfBetweenTwoLines(const Line& rhs) const {
 
 	return (asin(res) * 180.0 / 3.14);
 }
+
 char* Line::numberToChar(double num) const // if coordinates of Point are bigger than one digit number
 {
 	int tmp = (int)num;
@@ -197,6 +197,8 @@ char* Line::numberToChar(double num) const // if coordinates of Point are bigger
 	return chNumber;
 	if (chNumber != nullptr) delete[] chNumber;
 }
+
+
 std::ostream& Line::ins(std::ostream& out)const {
 	out << "Point: (" << this->point.getX() << ", " << this->point.getY() << ", " << this->point.getZ() << ")" << std::endl;
 	this->point.ins(out);
@@ -244,17 +246,17 @@ width: 360px;
 		<p id="coordinates-v">)";
 	html += "V(";
 	//------------Coordinates for Vector--------------
-	char* tmpX;
+	std::string tmpX;
 	tmpX = numberToChar(getX());
-	for (int i = 0; i < strlen(tmpX); i++)html += tmpX[i];
+	for (int i = 0; i < tmpX.length(); i++)html += tmpX[i];
 	html += ", ";
-	char* tmpY;
+	std::string tmpY;
 	tmpY = numberToChar(getY());
-	for (int i = 0; i < strlen(tmpY); i++)html += tmpY[i];
+	for (int i = 0; i < tmpY.length(); i++)html += tmpY[i];
 	html += ", ";
-	char* tmpZ;
+	std::string tmpZ;
 	tmpZ = numberToChar(getZ());
-	for (int i = 0; i < strlen(tmpZ); i++)html += tmpZ[i];
+	for (int i = 0; i < tmpZ.length(); i++)html += tmpZ[i];
 	html += ") </p>\n";
 	html += R"(
 	
@@ -264,17 +266,17 @@ width: 360px;
 		<p id="coordinates-p">)";
 	//-----------Coordinates for Point----------------
 	html += "P(";
-	char* pointTmpX;
+	std::string pointTmpX;
 	pointTmpX = numberToChar(point.getX());
-	for (int i = 0; i < strlen(pointTmpX); i++)html += pointTmpX[i];
+	for (int i = 0; i < pointTmpX.length(); i++)html += pointTmpX[i];
 	html += ", ";
-	char* pointTmpY;
+	std::string pointTmpY;
 	pointTmpY = numberToChar(point.getY());
-	for (int i = 0; i < strlen(pointTmpY); i++)html += pointTmpY[i];
+	for (int i = 0; i < pointTmpY.length(); i++)html += pointTmpY[i];
 	html += ", ";
-	char* pointTmpZ;
+	std::string pointTmpZ;
 	pointTmpZ = numberToChar(point.getZ());
-	for (int i = 0; i < strlen(pointTmpZ); i++)html += pointTmpZ[i];
+	for (int i = 0; i < pointTmpZ.length(); i++)html += pointTmpZ[i];
 	html += ") </p>\n";
 	html += R"(
 		</div>

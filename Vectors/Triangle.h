@@ -1,6 +1,7 @@
 #ifndef Triangle_hh
 #define Triangle_hh
 #include "Vector.h"
+#include"Helper.h"
 #include "EqualPointException.h"
 #include <string>
 #include <fstream>
@@ -11,7 +12,6 @@ class Triangle :virtual public Point, public Vector
 private:
 	Point a, b, c;
 public:
-	std::string numberToChar(double)const;
 	//Big Five
 	Triangle();
 	Triangle(const Point&, const Point&, const Point&);
