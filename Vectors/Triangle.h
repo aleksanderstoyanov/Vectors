@@ -11,7 +11,7 @@ class Triangle :virtual public Point, public Vector
 private:
 	Point a, b, c;
 public:
-	char* numberToChar(double)const;
+	std::string numberToChar(double)const;
 	//Big Five
 	Triangle();
 	Triangle(const Point&, const Point&, const Point&);
@@ -52,5 +52,4 @@ bool operator ==(const Point&, const Triangle&);
 
 
 #endif // !Triangle_hh
-
 

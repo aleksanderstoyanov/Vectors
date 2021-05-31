@@ -32,28 +32,11 @@ Point Triangle::getB() const { return b; }
 
 Point Triangle::getC() const { return c; }
 
-char* Triangle::numberToChar(double num) const // if coordinates of Point are bigger than one digit number
+std::string Triangle::numberToChar(double num) const // if coordinates of Point are bigger than one digit number
 {
-    int tmp = (int)num;
-    int cntDigits = 0;
-    if (tmp == 0) cntDigits = 1;
-    while (tmp != 0)
-    {
-        cntDigits++;
-        tmp /= 10;
-    }
-    char* chNumber = new char[cntDigits + 1];
-    tmp = (int)num; // just in case -> for not to change the coordinate of the Point
-    int j = cntDigits - 1;
-    for (int i = cntDigits; i > 0; i--)
-    {
-        chNumber[j--] = ((char)abs(tmp) % 10 + '0');
-        tmp /= 10;
-    }
-    j = cntDigits;
-    chNumber[j] = '\0'; // put the terminate zero in the end
-    return chNumber;
-    if (chNumber != nullptr) delete[] chNumber;
+    double tmp = num;
+    std::string result = std::to_string(tmp);
+    return result;
 }
 
 std::ostream& Triangle::ins(std::ostream& out)const
@@ -93,17 +76,17 @@ std::ostream& Triangle::ins(std::ostream& out)const
     html += "<p> C(";
 
     // C'coordinates
-    char* tmpC;
+    std::string tmpC;
     tmpC = numberToChar(c.getX());
-    for (int i = 0; i < strlen(tmpC); i++)html += tmpC[i];
+    for (int i = 0; i < tmpC.length(); i++)html += tmpC[i];
     html += ",";
 
     tmpC = numberToChar(c.getY());
-    for (int i = 0; i < strlen(tmpC); i++)html += tmpC[i];
+    for (int i = 0; i < tmpC.length(); i++)html += tmpC[i];
     html += ",";
 
     tmpC = numberToChar(c.getZ());
-    for (int i = 0; i < strlen(tmpC); i++)html += tmpC[i];
+    for (int i = 0; i < tmpC.length(); i++)html += tmpC[i];
     html += ") </p>\n";
     html += R"(
         <div class="triangle-right">
@@ -111,34 +94,34 @@ std::ostream& Triangle::ins(std::ostream& out)const
     html += "<p> B(";
 
     //  B'coordinates 
-    char* tmpB;
+    std::string tmpB;
     tmpB = numberToChar(b.getX());
-    for (int i = 0; i < strlen(tmpB); i++)html += tmpB[i];
+    for (int i = 0; i < tmpB.length(); i++)html += tmpB[i];
     html += ",";
 
     tmpB = numberToChar(b.getY());
-    for (int i = 0; i < strlen(tmpB); i++)html += tmpB[i];
+    for (int i = 0; i < tmpB.length(); i++)html += tmpB[i];
     html += ",";
 
     tmpB = numberToChar(b.getZ());
-    for (int i = 0; i < strlen(tmpB); i++)html += tmpB[i];
+    for (int i = 0; i < tmpB.length(); i++)html += tmpB[i];
     html += ") </p>\n";
     html += R"(
         </div>)";
     html += "<p> A(";
 
     // A'coordinates
-    char* tmpA;
+    std::string tmpA;
     tmpA = numberToChar(a.getX());
-    for (int i = 0; i < strlen(tmpA); i++)html += tmpA[i];
+    for (int i = 0; i < tmpA.length(); i++)html += tmpA[i];
     html += ",";
 
     tmpA = numberToChar(a.getY());
-    for (int i = 0; i < strlen(tmpA); i++)html += tmpA[i];
+    for (int i = 0; i < tmpA.length(); i++)html += tmpA[i];
     html += ",";
 
     tmpA = numberToChar(a.getZ());
-    for (int i = 0; i < strlen(tmpA); i++)html += tmpA[i];
+    for (int i = 0; i < tmpA.length(); i++)html += tmpA[i];
     html += ") </p>\n";
     html += R"(
         </body>
@@ -364,7 +347,7 @@ bool operator >(const Point& p, const Triangle& T)  // Point > Triangle
 
     // check if one of the areas of the small triangles is 0 -> this means that the points of this triangle are collinear ->
                                                                                                      // lie on one line
-    // make this area twice bigger for not to be in the case where Point p is inside 
+    // make this area bigger for not to be in the case where Point p is inside 
     if (area_ABP == 0.) area_ABP++;
     else if (area_BPC == 0.) area_BPC++;
     else if (area_CPA == 0.) area_CPA++;
