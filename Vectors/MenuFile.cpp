@@ -127,6 +127,11 @@ int printMenuFile() {
 		}
 
 	}
+	if (line==3)
+	{
+		Element* el = container.front();
+		runTask(option, taskForObject, el, buffer);
+	}
 	saveContainerInFile(container);
 	reader.close();
 
@@ -643,7 +648,7 @@ int runTask(int option, int task, Element*& obj, const char* buffer) {
 	}
 	case 4:
 	{
-		if (task < 1 || task>2)
+		if (task < 1 || task>3)
 		{
 			throw FileException();
 		}
@@ -660,6 +665,11 @@ int runTask(int option, int task, Element*& obj, const char* buffer) {
 			std::cout << "Task running...(Find center of segment)" << std::endl;
 			std::cout << "Center of segment is: " << std::endl << seg->middle();
 		}
+		else if (task == 3) 
+		{
+			std::cout << "Task running...(Draw segment)" << std::endl;
+			std::cout << *seg;
+		}
 
 		break;
 	}
@@ -674,24 +684,31 @@ int runTask(int option, int task, Element*& obj, const char* buffer) {
 		std::cout << *t;
 		if (task == 1)
 		{
+			char* result = new char[30];
+			strcpy_s(result, strlen(t->type()) + 1, t->type());
 			std::cout << "Task running...(find type of triangle)" << std::endl;
-			std::cout << "Type of triangle is: " << t->type();
+			std::cout << "Type of triangle is: " << result<<std::endl;
+			if (result!=nullptr)
+			{
+				delete[]result;
+				result = nullptr;
+			}
 		}
 		else if (task == 2)
 		{
 			std::cout << "Task running...(find area of triangle)" << std::endl;
-			std::cout << "Area of triangle is: " << t->area();
+			std::cout << "Area of triangle is: " << t->area()<<std::endl;
 
 		}
 		else if (task == 3) {
 			std::cout << "Task running...(find perimeter of triangle)" << std::endl;
-			std::cout << "Perimeter of triangle is: " << t->perimeter();
+			std::cout << "Perimeter of triangle is: " << t->perimeter()<<std::endl;
 
 		}
 		else if (task == 4)
 		{
 			std::cout << "Task running...(find medicenter of triangle)" << std::endl;
-			std::cout << "Medicenter of triangle is: " << t->perimeter();
+			std::cout << "Medicenter of triangle is: " << t->perimeter()<<std::endl;
 		}
 		else if (task == 5)
 		{

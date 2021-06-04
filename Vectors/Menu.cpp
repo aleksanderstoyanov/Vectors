@@ -33,7 +33,7 @@ int printMenu() {
 		}
 		else if (option == 0) {
 			saveContainerInFile(container);
-			
+
 			cout << "Successfully exited the program! Have an amazing day :)";
 			break;
 		}
@@ -64,7 +64,7 @@ int printMenu() {
 
 
 	}
-	
+
 	return 0;
 }
 
@@ -120,7 +120,7 @@ int printAllVectorOperations(std::vector<Element*>& container) {
 	int chooseOperation;
 	Vector v;
 	cin >> v;
-	
+
 	while (true) {
 		cout << endl << endl;
 		cout << "Please enter operation for the object: " << endl;
@@ -255,7 +255,7 @@ int printAllLineOperations(std::vector<Element*>& container) {
 	Line l;
 	cin >> l;
 	int chooseOperation;
-	
+
 	while (true)
 	{
 		cout << endl << endl;
@@ -419,7 +419,7 @@ int printAllSegmentOperations(std::vector<Element*>& container) {
 	int chooseOperation;
 	Segment s;
 	cin >> s;
-	
+
 	while (true)
 	{
 		cout << endl << endl;
@@ -427,9 +427,10 @@ int printAllSegmentOperations(std::vector<Element*>& container) {
 		cout << "0 - Exit" << endl;
 		cout << "1 - Find length of segment" << endl;
 		cout << "2 - Find center of segment" << endl;
+		cout << "3 - Draw segment" << endl;
 		cout << endl << endl;
 		cin >> chooseOperation;
-		if (chooseOperation < 0 || chooseOperation > 2) {
+		if (chooseOperation < 0 || chooseOperation > 3) {
 			cout << "Wrong! Please choose again: " << endl;
 			cin >> chooseOperation;
 		}
@@ -445,9 +446,16 @@ int printAllSegmentOperations(std::vector<Element*>& container) {
 				cout << "Lenght of segment is: " << lenght << endl;
 				break;
 			case 2:
+			{
 				Point result = s.middle();
 				cout << result << endl;
 				break;
+			}
+			case 3:
+			{
+				cout << s;
+				break;
+			}
 			}
 		}
 
@@ -509,6 +517,11 @@ int printAllTriangleOperations(std::vector<Element*>& container) {
 				char* result = new char[30];
 				strcpy_s(result, strlen(t.type()) + 1, t.type());
 				cout << "Type of triangle is: " << result << endl;
+				if (result != nullptr)
+				{
+					delete[]result;
+					result = nullptr;
+				}
 				break;
 			}
 			case 2:
@@ -573,28 +586,28 @@ int printAllTriangleOperations(std::vector<Element*>& container) {
 	Point* C = new Point(t.getC().getX(), t.getC().getY(), t.getC().getZ());
 
 	container.push_back(new Triangle(*A, *B, *C));
-	if (A!=nullptr)
+	if (A != nullptr)
 	{
 		delete A;
 		A = nullptr;
 	}
-	if (B!=nullptr)
+	if (B != nullptr)
 	{
 		delete B;
 		B = nullptr;
 	}
-	if (C!=nullptr)
+	if (C != nullptr)
 	{
 		delete C;
 		C = nullptr;
 	}
-		return 0;
+	return 0;
 }
 int printAllTetrahedronOperations(std::vector<Element*>& container) {
 	Tetrahedron t = Tetrahedron();
 	cin >> t;
 	int chooseOperation;
-	
+
 	while (true)
 	{
 		cout << endl << endl;
@@ -656,7 +669,7 @@ int printAllTetrahedronOperations(std::vector<Element*>& container) {
 	Point* B = new Point(t.getB().getX(), t.getB().getY(), t.getB().getZ());
 	Point* C = new Point(t.getC().getX(), t.getC().getY(), t.getC().getZ());
 	Point* D = new Point(t.getD().getX(), t.getD().getY(), t.getD().getZ());
-	container.push_back(new Tetrahedron(*A, *B, *C,*D));
+	container.push_back(new Tetrahedron(*A, *B, *C, *D));
 	if (A != nullptr)
 	{
 		delete A;
@@ -672,14 +685,14 @@ int printAllTetrahedronOperations(std::vector<Element*>& container) {
 		delete C;
 		C = nullptr;
 	}
-	if (D!=nullptr)
+	if (D != nullptr)
 	{
 		delete D;
 		D = nullptr;
 	}
 	return 0;
 }
-int saveContainerInFile(std::vector<Element*>& container) 
+int saveContainerInFile(std::vector<Element*>& container)
 {
 	cout << "Do you want to save the objects you have created ? y/n" << std::endl;
 	char answer;

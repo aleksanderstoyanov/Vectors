@@ -1,6 +1,8 @@
 #ifndef SEGMENT_H
 #define SEGMENT_H
 #include"Line.h"
+#include "Helper.h"
+#include <fstream>
 //#include<cmath>
 
 ///             First case: when we save in x  y  z the incline b(of the Line) 

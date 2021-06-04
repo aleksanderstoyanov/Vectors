@@ -3,6 +3,7 @@
 #include "Vector.h"
 #include "Triangle.h"
 #include "EqualPointException.h"
+#include "Helper.h"
 
 class Tetrahedron : public Vector, public Triangle
 {

@@ -298,7 +298,71 @@ std::ostream& Tetrahedron::ins(std::ostream& out)const {
 </head>
 <body>
 <h1>Tetrahedron</h1>
-    <div class="tetra">
+<h2>Coordinates:</h2>)";
+html += "<p> A(";
+
+// A coordinates
+std::string tmpA;
+tmpA = numberToChar(A.getX());
+for (int i = 0; i < tmpA.length(); i++)html += tmpA[i];
+html += ",";
+
+tmpA = numberToChar(A.getY());
+for (int i = 0; i < tmpA.length(); i++)html += tmpA[i];
+html += ",";
+
+tmpA = numberToChar(A.getZ());
+for (int i = 0; i < tmpA.length(); i++)html += tmpA[i];
+html += ") </p>\n";
+html += "<p> B(";
+
+// B coordinates
+std::string tmpB;
+tmpB = numberToChar(B.getX());
+for (int i = 0; i < tmpB.length(); i++)html += tmpB[i];
+html += ",";
+
+tmpB = numberToChar(B.getY());
+for (int i = 0; i < tmpB.length(); i++)html += tmpB[i];
+html += ",";
+
+tmpB = numberToChar(B.getZ());
+for (int i = 0; i < tmpB.length(); i++)html += tmpB[i];
+html += ") </p>\n";
+
+html += "<p> C(";
+
+// C coordinates
+std::string tmpC;
+tmpC = numberToChar(C.getX());
+for (int i = 0; i < tmpC.length(); i++)html += tmpC[i];
+html += ",";
+
+tmpC = numberToChar(C.getY());
+for (int i = 0; i < tmpC.length(); i++)html += tmpC[i];
+html += ",";
+
+tmpC = numberToChar(C.getZ());
+for (int i = 0; i < tmpC.length(); i++)html += tmpC[i];
+html += ") </p>\n";
+
+// D coordinates
+html += "<p> D(";
+std::string tmpD;
+tmpD = numberToChar(D.getX());
+for (int i = 0; i < tmpD.length(); i++)html += tmpD[i];
+html += ",";
+
+tmpD = numberToChar(D.getY());
+for (int i = 0; i < tmpD.length(); i++)html += tmpD[i];
+html += ",";
+
+tmpD = numberToChar(D.getZ());
+for (int i = 0; i < tmpD.length(); i++)html += tmpD[i];
+html += ") </p>\n";
+
+html+=
+    R"(<div class="tetra">
         <div class="face1"></div>
         <div class="face2"></div>
         <div class="face3"></div>
