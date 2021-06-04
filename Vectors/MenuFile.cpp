@@ -127,8 +127,9 @@ int printMenuFile() {
 		}
 
 	}
+	saveContainerInFile(container);
 	reader.close();
-	
+
 
 	std::cout << "Goodbye :)" << std::endl;
 	return 0;
@@ -136,12 +137,28 @@ int printMenuFile() {
 
 Point* parsePoint(const char* buffer) {
 	double parameters[3];
+	bool isMinus = false;
 	int numberOfArguments = 0;
 	for (int i = 0; i < strlen(buffer); i++)
 	{
+		if (isMinus)
+		{
+			parameters[numberOfArguments++] = (buffer[i] - '0') * -1.;
+			isMinus = false;
+			continue;
+		}
 		if (buffer[i] != ' ')
 		{
-			parameters[numberOfArguments++] = buffer[i] - '0';
+			if (buffer[i] == '-')
+			{
+				isMinus = true;
+				continue;
+			}
+			else {
+				parameters[numberOfArguments++] = buffer[i] - '0';
+				continue;
+			}
+
 		}
 	}
 	if (numberOfArguments < 3 || numberOfArguments>4)
@@ -154,12 +171,28 @@ Point* parsePoint(const char* buffer) {
 }
 Vector* parseVector(const char* buffer) {
 	double parameters[3];
+	bool isMinus = false;
 	int numberOfArguments = 0;
 	for (int i = 0; i < strlen(buffer); i++)
 	{
+		if (isMinus)
+		{
+			parameters[numberOfArguments++] = (buffer[i] - '0') * -1.;
+			isMinus = false;
+			continue;
+		}
 		if (buffer[i] != ' ')
 		{
-			parameters[numberOfArguments++] = buffer[i] - '0';
+			if (buffer[i] == '-')
+			{
+				isMinus = true;
+				continue;
+			}
+			else {
+				parameters[numberOfArguments++] = buffer[i] - '0';
+				continue;
+			}
+
 		}
 	}
 	if (numberOfArguments < 3 || numberOfArguments>3)
@@ -173,11 +206,24 @@ Vector* parseVector(const char* buffer) {
 Line* parseLine(const char* buffer) {
 	double parameters[6];
 	int numberOfArguments = 0;
+	bool isMinus = false;
 	for (int i = 0; i < strlen(buffer); i++)
 	{
+		if (isMinus)
+		{
+			parameters[numberOfArguments++] = (buffer[i] - '0')*-1.;
+			isMinus = false;
+			continue;
+		}
 		if (buffer[i] != ' ' && buffer[i] != ',')
 		{
+			if (buffer[i]=='-')
+			{
+				isMinus = true;
+				continue;
+			}
 			parameters[numberOfArguments++] = buffer[i] - '0';
+			continue;
 		}
 	}
 	if (numberOfArguments < 6 || numberOfArguments>6)
@@ -193,11 +239,24 @@ Line* parseLine(const char* buffer) {
 Segment* parseSegment(const char* buffer) {
 	double parameters[6];
 	int numberOfArguments = 0;
+	bool isMinus = false;
 	for (int i = 0; i < strlen(buffer); i++)
 	{
+		if (isMinus)
+		{
+			parameters[numberOfArguments++] = (buffer[i] - '0') * -1.;
+			isMinus = false;
+			continue;
+		}
 		if (buffer[i] != ' ' && buffer[i] != ',')
 		{
+			if (buffer[i] == '-')
+			{
+				isMinus = true;
+				continue;
+			}
 			parameters[numberOfArguments++] = buffer[i] - '0';
+			continue;
 		}
 	}
 	if (numberOfArguments < 6 || numberOfArguments>6)
@@ -213,11 +272,24 @@ Segment* parseSegment(const char* buffer) {
 Triangle* parseTriangle(const char* buffer) {
 	double parameters[9];
 	int numberOfArguments = 0;
+	bool isMinus = false;
 	for (int i = 0; i < strlen(buffer); i++)
 	{
+		if (isMinus)
+		{
+			parameters[numberOfArguments++] = (buffer[i] - '0') * -1.;
+			isMinus = false;
+			continue;
+		}
 		if (buffer[i] != ' ' && buffer[i] != ',')
 		{
+			if (buffer[i] == '-')
+			{
+				isMinus = true;
+				continue;
+			}
 			parameters[numberOfArguments++] = buffer[i] - '0';
+			continue;
 		}
 	}
 	if (numberOfArguments < 9 || numberOfArguments>9)
@@ -234,11 +306,24 @@ Triangle* parseTriangle(const char* buffer) {
 Tetrahedron* parseTetrahedron(const char* buffer) {
 	double parameters[12];
 	int numberOfArguments = 0;
+	bool isMinus = false;
 	for (int i = 0; i < strlen(buffer); i++)
 	{
+		if (isMinus)
+		{
+			parameters[numberOfArguments++] = (buffer[i] - '0') * -1.;
+			isMinus = false;
+			continue;
+		}
 		if (buffer[i] != ' ' && buffer[i] != ',')
 		{
+			if (buffer[i] == '-')
+			{
+				isMinus = true;
+				continue;
+			}
 			parameters[numberOfArguments++] = buffer[i] - '0';
+			continue;
 		}
 	}
 	if (numberOfArguments < 12 || numberOfArguments>12)
@@ -287,11 +372,7 @@ int runTask(int option, int task, Element*& obj, const char* buffer) {
 				p2 = nullptr;
 			}
 		}
-		if (p != nullptr)
-		{
-			delete p;
-			p = nullptr;
-		}
+
 		break;
 	}
 	case 2:
@@ -414,11 +495,7 @@ int runTask(int option, int task, Element*& obj, const char* buffer) {
 
 		}
 		// TO DO: Implement Cross product
-		if (v != nullptr)
-		{
-			delete v;
-			v = nullptr;
-		}
+
 		break;
 	}
 	case 3:
@@ -561,11 +638,7 @@ int runTask(int option, int task, Element*& obj, const char* buffer) {
 			std::cout << "Task running...(Draw line)" << std::endl;
 			std::cout << line;
 		}
-		if (line != nullptr)
-		{
-			delete line;
-			line = nullptr;
-		}
+
 		break;
 	}
 	case 4:
@@ -587,11 +660,7 @@ int runTask(int option, int task, Element*& obj, const char* buffer) {
 			std::cout << "Task running...(Find center of segment)" << std::endl;
 			std::cout << "Center of segment is: " << std::endl << seg->middle();
 		}
-		if (seg != nullptr)
-		{
-			delete seg;
-			seg = nullptr;
-		}
+
 		break;
 	}
 	case 5:
@@ -672,11 +741,7 @@ int runTask(int option, int task, Element*& obj, const char* buffer) {
 			std::cout << "Task running...(Draw triangle)" << std::endl;
 			std::cout << *t;
 		}
-		if (t != nullptr)
-		{
-			delete t;
-			t = nullptr;
-		}
+
 		break;
 
 	}

@@ -7,6 +7,7 @@
 #include "Tetrahedron.h"
 #include"Menu.h"
 #include <fstream>
+#include <string>
 using namespace std;
 
 
@@ -71,11 +72,14 @@ int printAllPointOperations(std::vector<Element*>& container) {
 	int chooseOperation;
 	Point p;
 	cin >> p;
-	cout << "Please enter operation for the object: " << endl;
-	cout << "0 - Exit" << endl;
-	cout << "1 - Find in which quadrant the point is" << endl;
-	cout << "2 - Find if two points are equal" << endl;
+
 	while (true) {
+		cout << endl << endl;
+		cout << "Please enter operation for the object: " << endl;
+		cout << "0 - Exit" << endl;
+		cout << "1 - Find in which quadrant the point is" << endl;
+		cout << "2 - Find if two points are equal" << endl;
+		cout << endl << endl;
 		cin >> chooseOperation;
 		if (chooseOperation < 0 || chooseOperation > 2) {
 			cout << "Wrong! Please choose again: " << endl;
@@ -116,19 +120,22 @@ int printAllVectorOperations(std::vector<Element*>& container) {
 	int chooseOperation;
 	Vector v;
 	cin >> v;
-	cout << "Please enter operation for the object: " << endl;
-	cout << "0 - Exit" << endl;
-	cout << "1 - calculation of vector length" << endl;
-	cout << "2 - calculate the direction of the vector" << endl;
-	cout << "3 - check for zero vector" << endl;
-	cout << "4 - check for parallelism of two vectors" << endl;
-	cout << "5 - check for perpendicularity of two vectors" << endl;
-	cout << "6 - addition of two vectors" << endl;
-	cout << "7 - multiplication of a vector by a real number" << endl;
-	cout << "8 - scalar product of two vectors" << endl;
-	cout << "9 - vector product of two vectors" << endl;
-	cout << "10 - cross product of three vectors" << endl;
+	
 	while (true) {
+		cout << endl << endl;
+		cout << "Please enter operation for the object: " << endl;
+		cout << "0 - Exit" << endl;
+		cout << "1 - calculation of vector length" << endl;
+		cout << "2 - calculate the direction of the vector" << endl;
+		cout << "3 - check for zero vector" << endl;
+		cout << "4 - check for parallelism of two vectors" << endl;
+		cout << "5 - check for perpendicularity of two vectors" << endl;
+		cout << "6 - addition of two vectors" << endl;
+		cout << "7 - multiplication of a vector by a real number" << endl;
+		cout << "8 - scalar product of two vectors" << endl;
+		cout << "9 - vector product of two vectors" << endl;
+		cout << "10 - cross product of three vectors" << endl;
+		cout << endl << endl;
 		cin >> chooseOperation;
 		if (chooseOperation < 0 || chooseOperation > 10) {
 			cout << "Wrong! Please enter again: " << endl;
@@ -248,20 +255,23 @@ int printAllLineOperations(std::vector<Element*>& container) {
 	Line l;
 	cin >> l;
 	int chooseOperation;
-	cout << "Please enter operation for the object: " << endl;
-	cout << "0 - Exit" << endl;
-	cout << "1 - Find line direction" << endl;
-	cout << "2 - Find normal vector" << endl;
-	cout << "3 - Find angle between two lines" << endl;
-	cout << "4 - Find if a given point lies on a line" << endl;
-	cout << "5 - Find if two lines are parallel" << endl;
-	cout << "6 - Find if two lines coincide" << endl;
-	cout << "7 - Find if two lines intersect" << endl;
-	cout << "8 - Find if two lines are skew" << endl;
-	cout << "9 - Find if two lines are perpendicular" << endl;
-	cout << "10 - Draw line" << endl;
+	
 	while (true)
 	{
+		cout << endl << endl;
+		cout << "Please enter operation for the object: " << endl;
+		cout << "0 - Exit" << endl;
+		cout << "1 - Find line direction" << endl;
+		cout << "2 - Find normal vector" << endl;
+		cout << "3 - Find angle between two lines" << endl;
+		cout << "4 - Find if a given point lies on a line" << endl;
+		cout << "5 - Find if two lines are parallel" << endl;
+		cout << "6 - Find if two lines coincide" << endl;
+		cout << "7 - Find if two lines intersect" << endl;
+		cout << "8 - Find if two lines are skew" << endl;
+		cout << "9 - Find if two lines are perpendicular" << endl;
+		cout << "10 - Draw line" << endl;
+		cout << endl << endl;
 		cin >> chooseOperation;
 		if (chooseOperation < 0 || chooseOperation > 10) {
 			cout << "Wrong! Please enter again: " << endl;
@@ -409,12 +419,15 @@ int printAllSegmentOperations(std::vector<Element*>& container) {
 	int chooseOperation;
 	Segment s;
 	cin >> s;
-	cout << "Please enter operation for the object: " << endl;
-	cout << "0 - Exit" << endl;
-	cout << "1 - Find length of segment" << endl;
-	cout << "2 - Find center of segment" << endl;
+	
 	while (true)
 	{
+		cout << endl << endl;
+		cout << "Please enter operation for the object: " << endl;
+		cout << "0 - Exit" << endl;
+		cout << "1 - Find length of segment" << endl;
+		cout << "2 - Find center of segment" << endl;
+		cout << endl << endl;
 		cin >> chooseOperation;
 		if (chooseOperation < 0 || chooseOperation > 2) {
 			cout << "Wrong! Please choose again: " << endl;
@@ -463,19 +476,21 @@ int printAllTriangleOperations(std::vector<Element*>& container) {
 	Triangle t;
 	cin >> t;
 	int chooseOperation;
-	cout << "Please enter operation for the object: " << endl;
-	cout << "0 - Exit" << endl;
-	cout << "1 - Find type of triangle" << endl;
-	cout << "2 - Find area of triangle" << endl;
-	cout << "3 - Find perimeter of triangle" << endl;
-	cout << "4 - Find medicenter of triangle" << endl;
-	cout << "5 - Find if a point lies on the same plane as the triangle's and if it is inside him" << endl;
-	cout << "6 - Find if a point lies on the same plane as the triangle's and if it is outside of him" << endl;
-	cout << "7 - Find if a point lies on a given line of the triangle's" << endl;
-	cout << "8 - Draw triangle" << endl;
 
 	while (true)
 	{
+		cout << endl << endl;
+		cout << "Please enter operation for the object: " << endl;
+		cout << "0 - Exit" << endl;
+		cout << "1 - Find type of triangle" << endl;
+		cout << "2 - Find area of triangle" << endl;
+		cout << "3 - Find perimeter of triangle" << endl;
+		cout << "4 - Find medicenter of triangle" << endl;
+		cout << "5 - Find if a point lies on the same plane as the triangle's and if it is inside him" << endl;
+		cout << "6 - Find if a point lies on the same plane as the triangle's and if it is outside of him" << endl;
+		cout << "7 - Find if a point lies on a given line of the triangle's" << endl;
+		cout << "8 - Draw triangle" << endl;
+		cout << endl << endl;
 		cin >> chooseOperation;
 		if (chooseOperation < 0 || chooseOperation > 8)
 		{
@@ -490,8 +505,12 @@ int printAllTriangleOperations(std::vector<Element*>& container) {
 			switch (chooseOperation)
 			{
 			case 1:
-				cout << "Type of triangle is: " << t.type() << endl;
+			{
+				char* result = new char[30];
+				strcpy_s(result, strlen(t.type()) + 1, t.type());
+				cout << "Type of triangle is: " << result << endl;
 				break;
+			}
 			case 2:
 				cout << "Area of triangle is: " << t.area() << endl;
 				break;
@@ -575,15 +594,18 @@ int printAllTetrahedronOperations(std::vector<Element*>& container) {
 	Tetrahedron t = Tetrahedron();
 	cin >> t;
 	int chooseOperation;
-	cout << "Please enter operation for the object: " << endl;
-	cout << "0 - Exit" << endl;
-	cout << "1 - Find if tetrahedron is regular" << endl;
-	cout << "2 - Find if tetrahedron is orthocentric" << endl;
-	cout << "3 - Find surface area" << endl;
-	cout << "4 - Find volume" << endl;
-	cout << "5 - Draw tetrahedron" << endl;
+	
 	while (true)
 	{
+		cout << endl << endl;
+		cout << "Please enter operation for the object: " << endl;
+		cout << "0 - Exit" << endl;
+		cout << "1 - Find if tetrahedron is regular" << endl;
+		cout << "2 - Find if tetrahedron is orthocentric" << endl;
+		cout << "3 - Find surface area" << endl;
+		cout << "4 - Find volume" << endl;
+		cout << "5 - Draw tetrahedron" << endl;
+		cout << endl << endl;
 		cin >> chooseOperation;
 		if (chooseOperation < 0 || chooseOperation > 5)
 		{
