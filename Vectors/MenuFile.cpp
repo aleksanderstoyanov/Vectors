@@ -684,15 +684,8 @@ int runTask(int option, int task, Element*& obj, const char* buffer) {
 		std::cout << *t;
 		if (task == 1)
 		{
-			char* result = new char[30];
-			strcpy_s(result, strlen(t->type()) + 1, t->type());
 			std::cout << "Task running...(find type of triangle)" << std::endl;
-			std::cout << "Type of triangle is: " << result<<std::endl;
-			if (result!=nullptr)
-			{
-				delete[]result;
-				result = nullptr;
-			}
+			t->type();
 		}
 		else if (task == 2)
 		{

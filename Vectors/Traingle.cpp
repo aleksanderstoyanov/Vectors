@@ -130,28 +130,11 @@ std::ostream& operator<<(std::ostream& lhs, const Triangle& rhs) {
     return rhs.ins(lhs);
 }
 
-char* Triangle::type() const  // равнобедрен/равностранен/остроъгълен/правоъгълен/тъпоъгълен)
+int Triangle::type() const  // равнобедрен/равностранен/остроъгълен/правоъгълен/тъпоъгълен)
                               // isosceles, equilateral, sharp-angled(acute), right-angled, obtuse
 {
-    double alpha, betha, gamma;
-    char i[] = "Isosceles";
-    char e[] = "Equilateral";
-    char s[] = "Sharp-angled";
-    char r[] = "Right-angled";
-    char o[] = "Obtuse";
-    char error[] = "Invalid Triangle!";
-
-    alpha = findAngle(a.getX(), b.getX(), c.getX(), a.getY(), b.getY(), c.getY(), a.getZ(), b.getZ(), c.getZ());
-    betha = findAngle(b.getX(), c.getX(), a.getX(), b.getY(), c.getY(), a.getY(), b.getZ(), c.getZ(), a.getZ());
-    gamma = findAngle(c.getX(), b.getX(), a.getX(), c.getY(), b.getY(), a.getY(), c.getZ(), b.getZ(), a.getZ());
-
-    if ((alpha == betha) or (alpha == gamma) or (betha == gamma)) return i;
-    else if (alpha == betha == gamma) return e;
-    else if (alpha < 90 and betha < 90 and gamma < 90) return s;
-    else if (alpha == 90 or betha == 90 or gamma == 90) return r;
-    else if (alpha > 90 or betha > 90 or gamma > 90) return o;
     // check which point is equal
-    else if (a == b or a == c)
+    if (a == b or a == c)
     {
         throw EqualPointException(a.getX(), a.getY(), a.getZ());
     }
@@ -160,6 +143,42 @@ char* Triangle::type() const  // равнобедрен/равностранен/остроъгълен/правоъгъле
         throw EqualPointException(b.getX(), b.getY(), b.getZ());
     }
 
+    double alpha, betha, gamma;
+    alpha = findAngle(a.getX(), b.getX(), c.getX(), a.getY(), b.getY(), c.getY(), a.getZ(), b.getZ(), c.getZ());
+    betha = findAngle(b.getX(), c.getX(), a.getX(), b.getY(), c.getY(), a.getY(), b.getZ(), c.getZ(), a.getZ());
+    gamma = findAngle(c.getX(), b.getX(), a.getX(), c.getY(), b.getY(), a.getY(), c.getZ(), b.getZ(), a.getZ());
+
+    std::cout << "\nTiangle's angles are:\n";
+    std::cout << "Angle alpha = " << alpha << " degrees" << std::endl;
+    std::cout << "Angle betha = " << betha << " degrees" << std::endl;
+    std::cout << "Angle gamma = " << gamma << " degrees" << std::endl;
+
+    if ((alpha == betha) or (alpha == gamma) or (betha == gamma))
+    {
+        std::cout << "\nType of Triangle is isosceles\n";
+        return 0;
+    }
+    else if (alpha == betha == gamma)
+    {
+        std::cout << "\nType of Triangle is equilateral\n";
+        return 0;
+    }
+    else if (alpha < 90 and betha < 90 and gamma < 90)
+    {
+        std::cout << "\nType of Triangle is sharp-angled\n";
+        return 0;
+    }
+    else if (alpha == 90 or betha == 90 or gamma == 90)
+    {
+        std::cout << "\nType of Triangle is right-angled\n";
+        return 0;
+    }
+    else if (alpha > 90 or betha > 90 or gamma > 90)
+    {
+        std::cout << "\nType of Triangle is obtuse\n";
+        return 0;
+    }
+    
 }
 
 double Triangle::area()const

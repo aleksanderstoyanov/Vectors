@@ -26,7 +26,7 @@ public:
 
 
 	//functionalities
-	char* type()const;
+	int type()const;
 	double area()const;
 	double perimeter()const;
 	Point medicenter()const;

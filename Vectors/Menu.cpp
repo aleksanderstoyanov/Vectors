@@ -514,6 +514,7 @@ int printAllTriangleOperations(std::vector<Element*>& container) {
 			{
 			case 1:
 			{
+				/*
 				char* result = new char[30];
 				strcpy_s(result, strlen(t.type()) + 1, t.type());
 				cout << "Type of triangle is: " << result << endl;
@@ -522,6 +523,8 @@ int printAllTriangleOperations(std::vector<Element*>& container) {
 					delete[]result;
 					result = nullptr;
 				}
+				*/
+				t.type();
 				break;
 			}
 			case 2:

@@ -10,6 +10,7 @@ private:
 	}
 
 public:
+	/*
 	void assert_type()const {
 		Point A = Point(6, 7, 1);
 		Point B = Point(8, 9, 12);
@@ -44,6 +45,7 @@ public:
 		}
 
 	}
+	*/
 	void assert_area()const {
 
 		Point A = Point(6, 7, 1);
