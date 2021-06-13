@@ -89,7 +89,7 @@ bool Line::operator||(const Line& rhs)const {
 
 
 
-} 
+}
 Point Line::findCrossingPoint(Line& rhs)
 {
 	if ((*this && rhs) == false)
@@ -363,10 +363,19 @@ std::istream& Line::ext(std::istream& in) {
 		setZ(v.getZ());
 	}
 	else {
+		Point p1;
+		Point p2;
 		std::cout << "Enter coordinates for first point: " << std::endl;
-		point.ext(in);
+		in >> p1;
 		std::cout << "Enter coordinates for second point: " << std::endl;
-		point2.ext(in);
+		in >> p2;
+		//Initialize points
+		this->point = p1;
+		this->point2 = p2;
+		//Initialize vector
+		this->setX(p2.getX() - p1.getX());
+		this->setY(p2.getY() - p1.getY());
+		this->setZ(p2.getZ() - p1.getZ());
 	}
 
 	return in;

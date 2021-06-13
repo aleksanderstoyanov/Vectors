@@ -1,7 +1,7 @@
 #ifndef FileException_hh
 #define FileException_hh
 #include <exception>
-class FileException :std::exception {
+class FileException :public std::exception {
 public:
 	FileException() :exception("Invalid file !") {
 

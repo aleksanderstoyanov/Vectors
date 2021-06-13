@@ -3,7 +3,7 @@
 #include <iostream>
 #include <exception>
 
-class EqualPointException :std::exception {
+class EqualPointException :public std::exception {
 
 private:
 	double x, y, z;
