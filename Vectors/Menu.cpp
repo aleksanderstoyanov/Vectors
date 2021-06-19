@@ -494,9 +494,9 @@ int printAllTriangleOperations(std::vector<Element*>& container) {
 		cout << "2 - Find area of triangle" << endl;
 		cout << "3 - Find perimeter of triangle" << endl;
 		cout << "4 - Find medicenter of triangle" << endl;
-		cout << "5 - Find if a point lies on the same plane as the triangle's and if it is inside him" << endl;
-		cout << "6 - Find if a point lies on the same plane as the triangle's and if it is outside of him" << endl;
-		cout << "7 - Find if a point lies on a given line of the triangle's" << endl;
+		cout << "5 - Find if a point lies on the same plane as the triangle's and it is INSIDE of it" << endl;
+		cout << "6 - Find if a point lies on the same plane as the triangle's and it is OUTSIDE of it" << endl;
+		cout << "7 - Find if a point lies on the same plane as the triangle's and LIES on any line of it" << endl;
 		cout << "8 - Draw triangle" << endl;
 		cout << endl << endl;
 		cin >> chooseOperation;
@@ -514,16 +514,6 @@ int printAllTriangleOperations(std::vector<Element*>& container) {
 			{
 			case 1:
 			{
-				/*
-				char* result = new char[30];
-				strcpy_s(result, strlen(t.type()) + 1, t.type());
-				cout << "Type of triangle is: " << result << endl;
-				if (result != nullptr)
-				{
-					delete[]result;
-					result = nullptr;
-				}
-				*/
 				t.type();
 				break;
 			}
@@ -536,37 +526,37 @@ int printAllTriangleOperations(std::vector<Element*>& container) {
 			case 4:
 				cout << "Medicenter of triangle is: " << t.medicenter() << endl;
 				break;
-			case 5:
+			case 5:  // inside
+			{
+				Point p;
+				cin >> p;
+				if (t > p and p < t) {  // both operators works( point can be left or right hand side )
+					cout << "Point lies on the same plane as the triangle and it is inside of it" << endl;
+				}
+				else {
+					cout << "Point is not inside of triangle" << endl;
+				}
+				break;
+			}
+			case 6:  // outside
 			{
 				Point p;
 				cin >> p;
 				if (t < p) {
-					cout << "Point lies on the same plane as the triangle and it is inside him" << endl;
+					cout << "Point lies on the same plane as the triangle and it is outside of it" << endl;
 				}
 				else {
-					cout << "Point does not lie on the same plane as the triangle and it is inside him" << endl;
-				}
-				break;
-			}
-			case 6:
-			{
-				Point p;
-				cin >> p;
-				if (t > p) {
-					cout << "Point lies on the same plane as the triangle and it is outside him" << endl;
-				}
-				else {
-					cout << "Point does not lie on the same plane as the triangle and it is outside him" << endl;
+					cout << "Point is not outside of triangle" << endl;
 				}
 				break;
 			}
 
-			case 7:
+			case 7:  // lies
 			{
 				Point p;
 				cin >> p;
 				if (t == p) {
-					cout << "Point lies on at least on one side of the triangle" << endl;
+					cout << "Point lies on the same plane as the triangle's and lies on any line of it" << endl;
 				}
 				else {
 					cout << "Point does not lie on neither of the triangle's sides" << endl;
@@ -621,9 +611,13 @@ int printAllTetrahedronOperations(std::vector<Element*>& container) {
 		cout << "3 - Find surface area" << endl;
 		cout << "4 - Find volume" << endl;
 		cout << "5 - Draw tetrahedron" << endl;
+		cout << "6 - Check if a point LIES on a tetrahedron" << endl;
+		cout << "7 - Check if a point is INSIDE a tetrahedron" << endl;
+		cout << "8 - Check if a point is OUTSIDE a tetrahedron" << endl;
+
 		cout << endl << endl;
 		cin >> chooseOperation;
-		if (chooseOperation < 0 || chooseOperation > 5)
+		if (chooseOperation < 0 || chooseOperation > 8)
 		{
 			cout << "Wrong! Please enter again: " << endl;
 			cin >> chooseOperation;
@@ -664,7 +658,30 @@ int printAllTetrahedronOperations(std::vector<Element*>& container) {
 			case 5:
 				cout << t;
 				break;
-
+			case 6:  // lies
+			{
+				Point p;
+				cin >> p;
+				if (p == t) cout << "Yes, Point lies on any edge of tetrahedron\n";
+				else cout << "No, Point does not lie on any edge of tetrahedron\n";
+				break;
+			}
+			case 7:  // inside
+			{
+				Point p;
+				cin >> p;
+				if (p < t or t > p) cout << "Yes, Point is inside of tetrahedron\n";
+				else cout << "No, Point is not inside of tetrahedron\n";
+				break;
+			}
+			case 8:  // outside
+			{
+				Point p;
+				cin >> p;
+				if (p > t) cout << "Yes, Point is outside of tetrahedron\n";
+				else cout << "No, Point is not outside of tetrahedron\n";
+				break;
+			}
 			}
 		}
 	}

@@ -6,7 +6,7 @@
 #include <string>
 #include <fstream>
 
-class Triangle :virtual public Point, public Vector
+class Triangle : public Vector
 {
 
 private:

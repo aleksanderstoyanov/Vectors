@@ -151,7 +151,7 @@ bool Tetrahedron::operator>(const Point& P) const    // Tetrahedron > Point
 	double volABCD = volume();
 	double sum = volABMP + volBCMP + volABPD + volCPBD;
 
-	if (volABCD == sum) return true;
+	if (volABCD - sum < 0.001) return true;
 	return false;
 }
 
@@ -206,7 +206,7 @@ bool operator<(const Point& P, const Tetrahedron& T)     // Point < Tetrahedron
 	double volABCD = T.volume();
 	double sum = volABMP + volBCMP + volABPD + volCPBD;
 
-	if (volABCD == sum) return true;
+	if (volABCD - sum < 0.001) return true;
 	return false;
 }
 

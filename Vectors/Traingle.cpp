@@ -206,7 +206,7 @@ Point Triangle::medicenter()const {
     return Point(x, y, z);
 
 }
-bool Triangle::operator >(const Point& p)const  // throws exception !!
+bool Triangle::operator >(const Point& p)const 
 
                                                     // Triangle > Point
                                                     /// Point is inside
@@ -218,7 +218,7 @@ bool Triangle::operator >(const Point& p)const  // throws exception !!
     if (AB(AC, AP) != 0) // triple product
     {
         std::cout << "The given Point is not coplanar with the points of the triangle!\n";
-        throw 1; // for now, later throw some exception !
+        return false;
     }
 
     Triangle ABP(a, b, p);   // divide Triangle in 3 smaller triangles
@@ -236,11 +236,11 @@ bool Triangle::operator >(const Point& p)const  // throws exception !!
     else if (area_BPC == 0.) area_BPC++;
     else if (area_CPA == 0.) area_CPA++;
 
-    if (area_ABC == (area_ABP + area_BPC + area_CPA)) return true;
+    if (area_ABC - (area_ABP + area_BPC + area_CPA) < 0.0001) return true;
     return false;
 }
 
-bool Triangle::operator <(const Point& p)const // throws exception !!
+bool Triangle::operator <(const Point& p)const
 
                                                     // Triangle < Point
                                                     /// Point is outside
@@ -253,7 +253,7 @@ bool Triangle::operator <(const Point& p)const // throws exception !!
     if (AB(AC, AP) != 0) // triple product
     {
         std::cout << "The given Point is not coplanar with the points of the triangle!\n";
-        throw 2; // for now, later throw some exception !
+        return false;
     }
 
     Triangle ABP(a, b, p);   // divide Triangle in 3 smaller triangles
@@ -267,7 +267,7 @@ bool Triangle::operator <(const Point& p)const // throws exception !!
     return false;
 }
 
-bool Triangle::operator ==(const Point& p)const // throws exception !!
+bool Triangle::operator ==(const Point& p)const 
 {
     // first check whether the Point p is in the same plane with the points a,b,c (coplanar points)
     Vector AB(a, b);
@@ -276,7 +276,7 @@ bool Triangle::operator ==(const Point& p)const // throws exception !!
     if (AB(AC, AP) != 0) // triple product
     {
         std::cout << "The given Point is not coplanar with the points of the triangle!\n";
-        throw 3; // for now, later throw some exception !
+        return false;
     }
 
     Triangle ABP(a, b, p);   // divide Triangle in 3 smaller triangles
@@ -303,7 +303,7 @@ bool operator <(const Point& p, const Triangle& T)  // Point < Triangle
     if (AB(AC, AP) != 0) // triple product
     {
         std::cout << "The given Point is not coplanar with the points of the triangle!\n";
-        throw 1; // for now, later throw some exception !
+        return false;
     }
 
     Triangle ABP(T.getA(), T.getB(), p);   // divide Triangle in 3 smaller triangles
@@ -321,7 +321,7 @@ bool operator <(const Point& p, const Triangle& T)  // Point < Triangle
     else if (area_BPC == 0.) area_BPC++;
     else if (area_CPA == 0.) area_CPA++;
 
-    if (area_ABC == (area_ABP + area_BPC + area_CPA)) return true;
+    if (area_ABC - (area_ABP + area_BPC + area_CPA) < 0.0001) return true;
     return false;
 }
 
@@ -335,7 +335,7 @@ bool operator >(const Point& p, const Triangle& T)  // Point > Triangle
     if (AB(AC, AP) != 0) // triple product
     {
         std::cout << "The given Point is not coplanar with the points of the triangle!\n";
-        throw 1; // for now, later throw some exception !
+        return false;
     }
 
     Triangle ABP(T.getA(), T.getB(), p);   // divide Triangle in 3 smaller triangles
