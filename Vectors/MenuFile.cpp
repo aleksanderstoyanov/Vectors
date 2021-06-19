@@ -143,16 +143,20 @@ int printMenuFile() {
 Point* parsePoint(const char* buffer) {
 	double parameters[3];
 	bool isMinus = false;
+	bool isNumberWithMoreDigits = false;
 	int numberOfArguments = 0;
 	for (int i = 0; i < strlen(buffer); i++)
 	{
-		if (isMinus)
+		if (isNumberWithMoreDigits)
 		{
-			parameters[numberOfArguments++] = (buffer[i] - '0') * -1.;
-			isMinus = false;
+			if (buffer[i]==' '||buffer[i]=='\0')
+			{
+				isNumberWithMoreDigits = false;
+			}
 			continue;
 		}
-		if (buffer[i] != ' ')
+		
+		if (buffer[i] != ' ' && buffer[i] != ',')
 		{
 			if (buffer[i] == '-')
 			{
@@ -160,7 +164,11 @@ Point* parsePoint(const char* buffer) {
 				continue;
 			}
 			else {
-				parameters[numberOfArguments++] = buffer[i] - '0';
+
+				
+				double resultNumber = parseNumber(i, buffer, isMinus, isNumberWithMoreDigits);
+				
+				parameters[numberOfArguments++] = resultNumber;
 				continue;
 			}
 
@@ -177,16 +185,20 @@ Point* parsePoint(const char* buffer) {
 Vector* parseVector(const char* buffer) {
 	double parameters[3];
 	bool isMinus = false;
+	bool isNumberWithMoreDigits = false;
 	int numberOfArguments = 0;
 	for (int i = 0; i < strlen(buffer); i++)
 	{
-		if (isMinus)
+		if (isNumberWithMoreDigits)
 		{
-			parameters[numberOfArguments++] = (buffer[i] - '0') * -1.;
-			isMinus = false;
+			if (buffer[i] == ' ' || buffer[i] == '\0')
+			{
+				isNumberWithMoreDigits = false;
+			}
 			continue;
 		}
-		if (buffer[i] != ' ')
+
+		if (buffer[i] != ' ' && buffer[i] != ',')
 		{
 			if (buffer[i] == '-')
 			{
@@ -194,7 +206,11 @@ Vector* parseVector(const char* buffer) {
 				continue;
 			}
 			else {
-				parameters[numberOfArguments++] = buffer[i] - '0';
+
+
+				double resultNumber = parseNumber(i, buffer, isMinus, isNumberWithMoreDigits);
+
+				parameters[numberOfArguments++] = resultNumber;
 				continue;
 			}
 
@@ -211,15 +227,19 @@ Vector* parseVector(const char* buffer) {
 Line* parseLine(const char* buffer) {
 	double parameters[6];
 	int numberOfArguments = 0;
+	bool isNumberWithMoreDigits = false;
 	bool isMinus = false;
 	for (int i = 0; i < strlen(buffer); i++)
 	{
-		if (isMinus)
+		if (isNumberWithMoreDigits)
 		{
-			parameters[numberOfArguments++] = (buffer[i] - '0') * -1.;
-			isMinus = false;
+			if (buffer[i] == ' ' || buffer[i] == '\0')
+			{
+				isNumberWithMoreDigits = false;
+			}
 			continue;
 		}
+
 		if (buffer[i] != ' ' && buffer[i] != ',')
 		{
 			if (buffer[i] == '-')
@@ -227,8 +247,15 @@ Line* parseLine(const char* buffer) {
 				isMinus = true;
 				continue;
 			}
-			parameters[numberOfArguments++] = buffer[i] - '0';
-			continue;
+			else {
+
+
+				double resultNumber = parseNumber(i, buffer, isMinus, isNumberWithMoreDigits);
+
+				parameters[numberOfArguments++] = resultNumber;
+				continue;
+			}
+
 		}
 	}
 	if (numberOfArguments < 6 || numberOfArguments>6)
@@ -244,15 +271,19 @@ Line* parseLine(const char* buffer) {
 Segment* parseSegment(const char* buffer) {
 	double parameters[6];
 	int numberOfArguments = 0;
+	bool isNumberWithMoreDigits = false;
 	bool isMinus = false;
 	for (int i = 0; i < strlen(buffer); i++)
 	{
-		if (isMinus)
+		if (isNumberWithMoreDigits)
 		{
-			parameters[numberOfArguments++] = (buffer[i] - '0') * -1.;
-			isMinus = false;
+			if (buffer[i] == ' ' || buffer[i] == '\0')
+			{
+				isNumberWithMoreDigits = false;
+			}
 			continue;
 		}
+
 		if (buffer[i] != ' ' && buffer[i] != ',')
 		{
 			if (buffer[i] == '-')
@@ -260,8 +291,15 @@ Segment* parseSegment(const char* buffer) {
 				isMinus = true;
 				continue;
 			}
-			parameters[numberOfArguments++] = buffer[i] - '0';
-			continue;
+			else {
+
+
+				double resultNumber = parseNumber(i, buffer, isMinus, isNumberWithMoreDigits);
+
+				parameters[numberOfArguments++] = resultNumber;
+				continue;
+			}
+
 		}
 	}
 	if (numberOfArguments < 6 || numberOfArguments>6)
@@ -277,15 +315,19 @@ Segment* parseSegment(const char* buffer) {
 Triangle* parseTriangle(const char* buffer) {
 	double parameters[9];
 	int numberOfArguments = 0;
+	bool isNumberWithMoreDigits = false;
 	bool isMinus = false;
 	for (int i = 0; i < strlen(buffer); i++)
 	{
-		if (isMinus)
+		if (isNumberWithMoreDigits)
 		{
-			parameters[numberOfArguments++] = (buffer[i] - '0') * -1.;
-			isMinus = false;
+			if (buffer[i] == ' ' || buffer[i] == '\0')
+			{
+				isNumberWithMoreDigits = false;
+			}
 			continue;
 		}
+
 		if (buffer[i] != ' ' && buffer[i] != ',')
 		{
 			if (buffer[i] == '-')
@@ -293,8 +335,15 @@ Triangle* parseTriangle(const char* buffer) {
 				isMinus = true;
 				continue;
 			}
-			parameters[numberOfArguments++] = buffer[i] - '0';
-			continue;
+			else {
+
+
+				double resultNumber = parseNumber(i, buffer, isMinus, isNumberWithMoreDigits);
+
+				parameters[numberOfArguments++] = resultNumber;
+				continue;
+			}
+
 		}
 	}
 	if (numberOfArguments < 9 || numberOfArguments>9)
@@ -311,24 +360,35 @@ Triangle* parseTriangle(const char* buffer) {
 Tetrahedron* parseTetrahedron(const char* buffer) {
 	double parameters[12];
 	int numberOfArguments = 0;
+	bool isNumberWithMoreDigits = false;
 	bool isMinus = false;
 	for (int i = 0; i < strlen(buffer); i++)
 	{
-		if (isMinus)
+		if (isNumberWithMoreDigits)
 		{
-			parameters[numberOfArguments++] = (buffer[i] - '0') * -1.;
-			isMinus = false;
+			if (buffer[i] == ' ' || buffer[i] == '\0')
+			{
+				isNumberWithMoreDigits = false;
+			}
 			continue;
 		}
-		if (buffer[i] != ' ' && buffer[i] != ',')
+
+		if (buffer[i] != ' '&&buffer[i]!=',')
 		{
 			if (buffer[i] == '-')
 			{
 				isMinus = true;
 				continue;
 			}
-			parameters[numberOfArguments++] = buffer[i] - '0';
-			continue;
+			else {
+
+
+				double resultNumber = parseNumber(i, buffer, isMinus, isNumberWithMoreDigits);
+
+				parameters[numberOfArguments++] = resultNumber;
+				continue;
+			}
+
 		}
 	}
 	if (numberOfArguments < 12 || numberOfArguments>12)
@@ -828,4 +888,35 @@ int runTask(int option, int task, Element*& obj, const char* buffer) {
 	}
 
 	return 0;
+}
+double parseNumber(int index, const char* buffer, bool& isMinus,bool& isNumberWithMoreDigits) 
+{
+	int temp = index;
+	std::vector<char>number;
+	while (buffer[temp] != ' ' && buffer[temp] != '\0'&&buffer[temp]!=',')
+	{
+		number.push_back(buffer[temp]);
+		temp++;
+	}
+
+	double resultNumber = 0;
+	if (number.size() > 1)
+	{
+		for (int i = 0; i < number.size(); i++)
+		{
+			resultNumber *= 10;
+			resultNumber += number[i] - '0';
+		}
+		isNumberWithMoreDigits = true;
+	}
+	else {
+		resultNumber = number.front() - '0';
+	}
+
+	if (isMinus)
+	{
+		resultNumber *= -1;
+		isMinus = false;
+	}
+	return resultNumber;
 }

@@ -18,6 +18,7 @@ Line* parseLine(const char*);
 Segment* parseSegment(const char*);
 Triangle* parseTriangle(const char*);
 Tetrahedron* parseTetrahedron(const char*);
+double parseNumber(int, const char*, bool&,bool&);
 int runTask(int, int, Element*&, const char*);
 #endif // !MenuFile_hh
 
