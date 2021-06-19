@@ -127,7 +127,7 @@ int printMenuFile() {
 		}
 
 	}
-	if (line==3)
+	if (line == 3)
 	{
 		Element* el = container.front();
 		runTask(option, taskForObject, el, buffer);
@@ -216,13 +216,13 @@ Line* parseLine(const char* buffer) {
 	{
 		if (isMinus)
 		{
-			parameters[numberOfArguments++] = (buffer[i] - '0')*-1.;
+			parameters[numberOfArguments++] = (buffer[i] - '0') * -1.;
 			isMinus = false;
 			continue;
 		}
 		if (buffer[i] != ' ' && buffer[i] != ',')
 		{
-			if (buffer[i]=='-')
+			if (buffer[i] == '-')
 			{
 				isMinus = true;
 				continue;
@@ -665,7 +665,7 @@ int runTask(int option, int task, Element*& obj, const char* buffer) {
 			std::cout << "Task running...(Find center of segment)" << std::endl;
 			std::cout << "Center of segment is: " << std::endl << seg->middle();
 		}
-		else if (task == 3) 
+		else if (task == 3)
 		{
 			std::cout << "Task running...(Draw segment)" << std::endl;
 			std::cout << *seg;
@@ -690,18 +690,18 @@ int runTask(int option, int task, Element*& obj, const char* buffer) {
 		else if (task == 2)
 		{
 			std::cout << "Task running...(find area of triangle)" << std::endl;
-			std::cout << "Area of triangle is: " << t->area()<<std::endl;
+			std::cout << "Area of triangle is: " << t->area() << std::endl;
 
 		}
 		else if (task == 3) {
 			std::cout << "Task running...(find perimeter of triangle)" << std::endl;
-			std::cout << "Perimeter of triangle is: " << t->perimeter()<<std::endl;
+			std::cout << "Perimeter of triangle is: " << t->perimeter() << std::endl;
 
 		}
 		else if (task == 4)
 		{
 			std::cout << "Task running...(find medicenter of triangle)" << std::endl;
-			std::cout << "Medicenter of triangle is: " << t->perimeter()<<std::endl;
+			std::cout << "Medicenter of triangle is: " << t->perimeter() << std::endl;
 		}
 		else if (task == 5)
 		{
@@ -757,7 +757,7 @@ int runTask(int option, int task, Element*& obj, const char* buffer) {
 	}
 	case 6:
 	{
-		if (task < 1 || task>5)
+		if (task < 1 || task>8)
 		{
 			throw FileException();
 		}
@@ -802,7 +802,27 @@ int runTask(int option, int task, Element*& obj, const char* buffer) {
 			std::cout << "Drawing...." << std::endl;
 			std::cout << *t;
 		}
+		else if (task == 6)
+		{
+			std::cout << "Task running...(Check if a point LIES on a tetrahedron)" << std::endl;
+			Point* p = parsePoint(buffer);
+			if (*p == *t) std::cout << "Yes, Point lies on any edge of tetrahedron\n";
+			else std::cout << "No, Point does not lie on any edge of tetrahedron\n";
 
+		}
+		else if (task == 7) {
+			std::cout << "Task running...(Check if a point is INSIDE a tetrahedron)" << std::endl;
+			Point* p = parsePoint(buffer);
+			if (*p < *t && *t > *p) std::cout << "Yes, Point is inside of tetrahedron\n";
+			else std::cout << "No, Point is not inside of tetrahedron\n";
+		}
+		else if (task == 8)
+		{
+			std::cout << "Task running...(Check if a point is OUTSIDE a tetrahedron)" << std::endl;
+			Point* p = parsePoint(buffer);
+			if (*p > *t) std::cout << "Yes, Point is outside of tetrahedron\n";
+			else std::cout << "No, Point is not outside of tetrahedron\n";
+		}
 	}
 
 	}

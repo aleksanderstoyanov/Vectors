@@ -83,7 +83,7 @@ bool Line::operator||(const Line& rhs)const {
 	double tDivider = (getX() * (-rhs.getY()) - getY() * (-rhs.getX()));
 	// if tDivider = 0 -> means that the system has no solution -> parallel lines
 
-	if (x == y && y == z && tDivider == 0) return true;
+	if ((x - y<0.01) && y - z<0.01 && tDivider == 0) return true;
 	return false;
 
 

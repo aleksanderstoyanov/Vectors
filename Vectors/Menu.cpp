@@ -27,6 +27,7 @@ int printMenu() {
 	while (true) {
 		cout << "Please enter geometrical object: " << endl;
 		cin >> option;
+		
 		if (option < 0 || option > 6) {
 			cout << "Wrong! Please choose again: " << endl;
 			cin >> option;
@@ -670,7 +671,7 @@ int printAllTetrahedronOperations(std::vector<Element*>& container) {
 			{
 				Point p;
 				cin >> p;
-				if (p < t or t > p) cout << "Yes, Point is inside of tetrahedron\n";
+				if (p < t && t > p) cout << "Yes, Point is inside of tetrahedron\n";
 				else cout << "No, Point is not inside of tetrahedron\n";
 				break;
 			}

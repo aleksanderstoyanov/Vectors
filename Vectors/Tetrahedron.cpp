@@ -136,23 +136,17 @@ bool Tetrahedron::operator>(const Point& P) const    // Tetrahedron > Point
 	//       4) check if their sum is equal to volume of the big Tetrahedron if(true) return true;
 {
 
-	Triangle ABC(A, B, C);
-	Point M = ABC.medicenter();
-
-	Tetrahedron ABMP(A, B, M, P);
-	Tetrahedron BCMP(B, C, M, P);
-	Tetrahedron ABPD(A, B, P, D);
-	Tetrahedron CPBD(C, P, B, D);
-
-	double volABMP = ABMP.volume();
-	double volBCMP = BCMP.volume();
+	Tetrahedron PBCD(P, getB(), getC(), getD());
+	Tetrahedron APCD(getA(), P, getC(), getD());
+	Tetrahedron ABPD(getA(), getB(), P, getD());
+	Tetrahedron ABCP(getA(), getB(), getC(), P);
+	double volPBCD = PBCD.volume();
+	double volAPCD = APCD.volume();
 	double volABPD = ABPD.volume();
-	double volCPBD = CPBD.volume();
-	double volABCD = volume();
-	double sum = volABMP + volBCMP + volABPD + volCPBD;
-
-	if (volABCD - sum < 0.001) return true;
+	double volABCP = ABCP.volume();
+	if (volPBCD > 0 and volABCP > 0 and volABPD > 0 and volABPD > 0) return true;
 	return false;
+
 }
 
 
@@ -191,23 +185,22 @@ bool Tetrahedron::operator==(const Point& P) const
 bool operator<(const Point& P, const Tetrahedron& T)     // Point < Tetrahedron
 														/// if Point is inside
 {
-	Triangle ABC(T.getA(), T.getB(), T.getC());
-	Point M = ABC.medicenter();
 
-	Tetrahedron ABMP(T.getA(), T.getB(), M, P);
-	Tetrahedron BCMP(T.getB(), T.getC(), M, P);
+	Tetrahedron PBCD(P, T.getB(), T.getC(), T.getD());
+	Tetrahedron APCD(T.getA(), P, T.getC(), T.getD());
 	Tetrahedron ABPD(T.getA(), T.getB(), P, T.getD());
-	Tetrahedron CPBD(T.getC(), P, T.getB(), T.getD());
-
-	double volABMP = ABMP.volume();
-	double volBCMP = BCMP.volume();
+	Tetrahedron ABCP(T.getA(), T.getB(), T.getC(), P);
+	double volPBCD = PBCD.volume();
+	double volAPCD = APCD.volume();
 	double volABPD = ABPD.volume();
-	double volCPBD = CPBD.volume();
-	double volABCD = T.volume();
-	double sum = volABMP + volBCMP + volABPD + volCPBD;
-
-	if (volABCD - sum < 0.001) return true;
+	double volABCP = ABCP.volume();
+	if (volPBCD > 0 and volABCP > 0 and volABPD > 0 and volABPD > 0) return true;
 	return false;
+
+
+
+
+
 }
 
 bool operator>(const Point& P, const Tetrahedron& T)     // Point > Tetrahedron
@@ -299,70 +292,70 @@ std::ostream& Tetrahedron::ins(std::ostream& out)const {
 <body>
 <h1>Tetrahedron</h1>
 <h2>Coordinates:</h2>)";
-html += "<p> A(";
+	html += "<p> A(";
 
-// A coordinates
-std::string tmpA;
-tmpA = numberToChar(A.getX());
-for (int i = 0; i < tmpA.length(); i++)html += tmpA[i];
-html += ",";
+	// A coordinates
+	std::string tmpA;
+	tmpA = numberToChar(A.getX());
+	for (int i = 0; i < tmpA.length(); i++)html += tmpA[i];
+	html += ",";
 
-tmpA = numberToChar(A.getY());
-for (int i = 0; i < tmpA.length(); i++)html += tmpA[i];
-html += ",";
+	tmpA = numberToChar(A.getY());
+	for (int i = 0; i < tmpA.length(); i++)html += tmpA[i];
+	html += ",";
 
-tmpA = numberToChar(A.getZ());
-for (int i = 0; i < tmpA.length(); i++)html += tmpA[i];
-html += ") </p>\n";
-html += "<p> B(";
+	tmpA = numberToChar(A.getZ());
+	for (int i = 0; i < tmpA.length(); i++)html += tmpA[i];
+	html += ") </p>\n";
+	html += "<p> B(";
 
-// B coordinates
-std::string tmpB;
-tmpB = numberToChar(B.getX());
-for (int i = 0; i < tmpB.length(); i++)html += tmpB[i];
-html += ",";
+	// B coordinates
+	std::string tmpB;
+	tmpB = numberToChar(B.getX());
+	for (int i = 0; i < tmpB.length(); i++)html += tmpB[i];
+	html += ",";
 
-tmpB = numberToChar(B.getY());
-for (int i = 0; i < tmpB.length(); i++)html += tmpB[i];
-html += ",";
+	tmpB = numberToChar(B.getY());
+	for (int i = 0; i < tmpB.length(); i++)html += tmpB[i];
+	html += ",";
 
-tmpB = numberToChar(B.getZ());
-for (int i = 0; i < tmpB.length(); i++)html += tmpB[i];
-html += ") </p>\n";
+	tmpB = numberToChar(B.getZ());
+	for (int i = 0; i < tmpB.length(); i++)html += tmpB[i];
+	html += ") </p>\n";
 
-html += "<p> C(";
+	html += "<p> C(";
 
-// C coordinates
-std::string tmpC;
-tmpC = numberToChar(C.getX());
-for (int i = 0; i < tmpC.length(); i++)html += tmpC[i];
-html += ",";
+	// C coordinates
+	std::string tmpC;
+	tmpC = numberToChar(C.getX());
+	for (int i = 0; i < tmpC.length(); i++)html += tmpC[i];
+	html += ",";
 
-tmpC = numberToChar(C.getY());
-for (int i = 0; i < tmpC.length(); i++)html += tmpC[i];
-html += ",";
+	tmpC = numberToChar(C.getY());
+	for (int i = 0; i < tmpC.length(); i++)html += tmpC[i];
+	html += ",";
 
-tmpC = numberToChar(C.getZ());
-for (int i = 0; i < tmpC.length(); i++)html += tmpC[i];
-html += ") </p>\n";
+	tmpC = numberToChar(C.getZ());
+	for (int i = 0; i < tmpC.length(); i++)html += tmpC[i];
+	html += ") </p>\n";
 
-// D coordinates
-html += "<p> D(";
-std::string tmpD;
-tmpD = numberToChar(D.getX());
-for (int i = 0; i < tmpD.length(); i++)html += tmpD[i];
-html += ",";
+	// D coordinates
+	html += "<p> D(";
+	std::string tmpD;
+	tmpD = numberToChar(D.getX());
+	for (int i = 0; i < tmpD.length(); i++)html += tmpD[i];
+	html += ",";
 
-tmpD = numberToChar(D.getY());
-for (int i = 0; i < tmpD.length(); i++)html += tmpD[i];
-html += ",";
+	tmpD = numberToChar(D.getY());
+	for (int i = 0; i < tmpD.length(); i++)html += tmpD[i];
+	html += ",";
 
-tmpD = numberToChar(D.getZ());
-for (int i = 0; i < tmpD.length(); i++)html += tmpD[i];
-html += ") </p>\n";
+	tmpD = numberToChar(D.getZ());
+	for (int i = 0; i < tmpD.length(); i++)html += tmpD[i];
+	html += ") </p>\n";
 
-html+=
-    R"(<div class="tetra">
+	html +=
+		R"(<div class="tetra">
         <div class="face1"></div>
         <div class="face2"></div>
         <div class="face3"></div>
