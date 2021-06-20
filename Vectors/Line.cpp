@@ -75,7 +75,6 @@ bool Line::operator+(const Point& rhs) const {
 
 bool Line::operator||(const Line& rhs)const {
 
-
 	double x = getX() / rhs.getX();
 	double y = getY() / rhs.getY();
 	double z = getZ() / rhs.getZ();
@@ -83,11 +82,14 @@ bool Line::operator||(const Line& rhs)const {
 	double tDivider = (getX() * (-rhs.getY()) - getY() * (-rhs.getX()));
 	// if tDivider = 0 -> means that the system has no solution -> parallel lines
 
-	if ((x - y<0.01) && y - z<0.01 && tDivider == 0) return true;
+	if ((x - y<0.01) && y - z<0.01 && (tDivider- 0. < 0.01)) return true;
 	return false;
 
-
-
+	/*
+	double angle = this->findAngleOfBetweenTwoLines(rhs);
+	if ((angle - 0.) < 0.01) return true;
+	return false;
+	*/
 
 }
 Point Line::findCrossingPoint(Line& rhs)
@@ -138,7 +140,7 @@ bool Line::operator==(const Line& rhs)const {
 	double tDivider = ((getX() * (-rhs.getY())) - (getY() * (-rhs.getX())));
 	// if tDivider = 0 -> means that the system has no solution -> parallel lines
 
-	if (tDivider == 0) return false;
+	if ((tDivider - 0.) < 0.01) return false;
 	// else -> means that the system has infinite count of solutions -> coincident lines
 	return true;
 }
